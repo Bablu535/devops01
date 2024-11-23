@@ -84,9 +84,9 @@
     <div class="container">
         <h1>Phone Recommendations</h1>
         <div class="disclaimer">
-            <strong>Get your vibe on with the best smartphone!</strong> 
+            <strong>GET YOUR WIBE ON THE SMART PHONE</strong> 
         </div>
-        <form id="phoneForm" onsubmit="event.preventDefault(); getRecommendations();">
+        <form id="phoneForm">
             <label for="ram">RAM Capacity (GB)</label>
             <select id="ram">
                 <option value="4">4GB</option>
@@ -107,13 +107,13 @@
             <select id="graphics">
                 <option value="basic">Basic</option>
                 <option value="intermediate">Intermediate</option>
-                <option value="high">High</option>
+                <option value="high">High-end</option>
             </select>
 
             <label for="camera">Camera Megapixels</label>
             <input type="number" id="camera" placeholder="Enter camera MP" min="1">
 
-            <button type="submit">Get Recommendations</button>
+            <button type="button" onclick="getRecommendations()">Get Recommendations</button>
         </form>
 
         <div id="recommendations" class="recommendations"></div>
@@ -121,61 +121,55 @@
 
     <script>
         function getRecommendations() {
-            // Get the form values
-            const ram = parseInt(document.getElementById("ram").value, 10);
-            const rom = parseInt(document.getElementById("rom").value, 10);
+            const ram = document.getElementById("ram").value;
+            const rom = document.getElementById("rom").value;
             const graphics = document.getElementById("graphics").value;
-            const camera = parseInt(document.getElementById("camera").value, 10);
+            const camera = document.getElementById("camera").value;
 
-            // Clear previous recommendations
             const recommendations = document.getElementById("recommendations");
             recommendations.innerHTML = "";
 
-            // Validate camera value
-            if (isNaN(camera) || camera <= 0) {
-                recommendations.innerHTML = "<p>Please enter a valid camera megapixel value.</p>";
-                return;
-            }
+            let phones = [];
 
-            // Phone list with details
+            // Dummy data for phone recommendations
             const phoneList = [
                 { name: "Samsung Galaxy S21 Ultra", ram: 12, rom: 512, graphics: "high", camera: 108 },
                 { name: "iPhone 14 Pro Max", ram: 6, rom: 512, graphics: "high", camera: 48 },
                 { name: "Google Pixel 7 Pro", ram: 12, rom: 256, graphics: "high", camera: 50 },
                 { name: "OnePlus 11", ram: 16, rom: 256, graphics: "high", camera: 50 },
                 { name: "Xiaomi Mi 11 Ultra", ram: 12, rom: 256, graphics: "high", camera: 50 },
+                { name: "Oppo Find X5 Pro", ram: 12, rom: 512, graphics: "high", camera: 50 },
+                { name: "Sony Xperia 1 IV", ram: 12, rom: 512, graphics: "high", camera: 12 },
                 { name: "Samsung Galaxy A52", ram: 6, rom: 128, graphics: "intermediate", camera: 64 },
                 { name: "iPhone 13", ram: 4, rom: 128, graphics: "intermediate", camera: 12 },
-                { name: "Realme GT 2 Pro", ram: 8, rom: 256, graphics: "high", camera: 50 }
+                { name: "Realme GT 2 Pro", ram: 8, rom: 256, graphics: "high", camera: 50 },
+                { name: "Asus ROG Phone 6", ram: 16, rom: 512, graphics: "high", camera: 50 },
+                { name: "Vivo X80 Pro", ram: 12, rom: 256, graphics: "high", camera: 50 },
+                { name: "Motorola Edge 30 Ultra", ram: 12, rom: 256, graphics: "high", camera: 200 },
+                { name: "Xiaomi Redmi Note 12 Pro", ram: 8, rom: 128, graphics: "intermediate", camera: 108 },
+                { name: "Poco F4 GT", ram: 12, rom: 256, graphics: "high", camera: 64 },
+                { name: "Samsung Galaxy Z Fold 4", ram: 12, rom: 512, graphics: "high", camera: 50 },
+                { name: "OnePlus Nord 2T", ram: 8, rom: 128, graphics: "intermediate", camera: 50 },
+                { name: "Realme Narzo 50 Pro", ram: 6, rom: 128, graphics: "intermediate", camera: 48 },
+                { name: "Sony Xperia 5 IV", ram: 8, rom: 128, graphics: "high", camera: 12 },
+                { name: "Huawei Mate 50 Pro", ram: 8, rom: 512, graphics: "high", camera: 50 }
             ];
 
-            // Filter phones based on the criteria
-            const filteredPhones = phoneList.filter(phone =>
-                phone.ram >= ram &&
-                phone.rom >= rom &&
-                phone.graphics === graphics &&
-                phone.camera >= camera
-            );
+            phoneList.forEach(phone => {
+                if (phone.ram >= ram && phone.rom >= rom && phone.graphics === graphics && phone.camera >= camera) {
+                    phones.push(phone);
+                }
+            });
 
-            // Debugging: Console log the filtered phones to check the results
-            console.log(filteredPhones);
-
-            // Check if any phones match and display them
-            if (filteredPhones.length > 0) {
-                filteredPhones.forEach(phone => {
+            if (phones.length > 0) {
+                phones.forEach(phone => {
                     const div = document.createElement("div");
                     div.classList.add("recommendation-item");
-                    div.innerHTML = `
-                        <strong>Mobile:</strong> ${phone.name} <br>
-                        <strong>RAM:</strong> ${phone.ram}GB <br>
-                        <strong>ROM:</strong> ${phone.rom}GB <br>
-                        <strong>Graphics:</strong> ${phone.graphics} <br>
-                        <strong>Camera:</strong> ${phone.camera}MP <br>
-                    `;
+                    div.textContent = `Model: ${phone.name} - RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}`;
                     recommendations.appendChild(div);
                 });
             } else {
-                recommendations.innerHTML = "<p>No phones match your criteria.</p>";
+                recommendations.textContent = "No phones match your criteria.";
             }
         }
     </script>
