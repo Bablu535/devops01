@@ -165,7 +165,7 @@
                 phones.forEach(phone => {
                     const div = document.createElement("div");
                     div.classList.add("recommendation-item");
-                    div.textContent = `Model: ${phone.name} - RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}`;
+                    div.textContent = `Model: ${phone.name},RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}`;
                     recommendations.appendChild(div);
                 });
             } else {
