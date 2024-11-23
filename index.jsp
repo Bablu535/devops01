@@ -121,10 +121,10 @@
 
     <script>
         function getRecommendations() {
-            const ram = parseInt(document.getElementById("ram").value, 10); // Selected RAM
-            const rom = parseInt(document.getElementById("rom").value, 10); // Selected ROM
-            const graphics = document.getElementById("graphics").value.toLowerCase(); // Selected Graphics
-            const camera = parseInt(document.getElementById("camera").value, 10); // Entered Camera MP
+            const ram = parseInt(document.getElementById("ram").value, 10);
+            const rom = parseInt(document.getElementById("rom").value, 10);
+            const graphics = document.getElementById("graphics").value.toLowerCase();
+            const camera = parseInt(document.getElementById("camera").value, 10) || 0; // Default to 0 if empty
 
             const recommendations = document.getElementById("recommendations");
             recommendations.innerHTML = ""; // Clear previous results
@@ -145,7 +145,8 @@
             const filteredPhones = phoneList.filter(phone =>
                 phone.ram >= ram &&
                 phone.rom >= rom &&
-                phone.graphics === graphics
+                phone.graphics === graphics &&
+                phone.camera >= camera
             );
 
             // Display filtered phones or fallback message
@@ -157,7 +158,7 @@
                     recommendations.appendChild(div);
                 });
             } else {
-                recommendations.textContent = "No phones match your criteria.";
+                recommendations.textContent = "No phones match your criteria. Try adjusting your filters.";
             }
         }
     </script>
