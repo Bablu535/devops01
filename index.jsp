@@ -154,6 +154,7 @@
                 let output = "<h3>Recommended Phones:</h3>";
                 output += "<ul>";
                 filteredPhones.forEach(phone => {
+                    console.log(phone);
                     output += `<li><strong>${phone.name}</strong><br>RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}</li>`;
                 });
                 output += "</ul>";
