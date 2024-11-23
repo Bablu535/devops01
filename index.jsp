@@ -114,11 +114,11 @@
             <select id="graphics">
                 <option value="basic">Basic</option>
                 <option value="intermediate">Intermediate</option>
-                <option value="high">High-end</option>
+                <option value="high">High</option>
             </select>
 
             <label for="camera">Camera Megapixels</label>
-            <input type="number" id="camera" placeholder="Enter camera MP" min="1">
+            <input type="number" id="camera" value="camera" placeholder="Enter camera MP" min="1">
 
             <button type="button" onclick="getRecommendations()">Get Recommendations</button>
         </form>
@@ -165,8 +165,9 @@
                         <strong>Mobile:</strong> ${phone.name} <br>
                         <strong>RAM:</strong> ${phone.ram}GB <br>
                         <strong>ROM:</strong> ${phone.rom}GB <br>
-                        <strong>Camera:</strong> ${phone.camera}MP <br>
                         <strong>Graphics:</strong> ${phone.graphics} <br>
+                        <strong>Camera:</strong> ${phone.camera}MP <br>
+                        
                     `;
                     recommendations.appendChild(div);
                 });
