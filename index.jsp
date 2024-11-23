@@ -127,60 +127,60 @@
     </div>
 
     <script>
-    function getRecommendations() {
-        const ram = parseInt(document.getElementById("ram").value, 10);
-        const rom = parseInt(document.getElementById("rom").value, 10);
-        const graphics = document.getElementById("graphics").value;
-        const camera = parseInt(document.getElementById("camera").value, 10);
+        function getRecommendations() {
+            const ram = parseInt(document.getElementById("ram").value, 10);
+            const rom = parseInt(document.getElementById("rom").value, 10);
+            const graphics = document.getElementById("graphics").value;
+            const camera = parseInt(document.getElementById("camera").value, 10);
 
-        const recommendations = document.getElementById("recommendations");
-        recommendations.innerHTML = "";  // Clear previous recommendations
+            const recommendations = document.getElementById("recommendations");
+            recommendations.innerHTML = "";  // Clear previous recommendations
 
-        // Ensure that the camera input is a valid positive number
-        if (isNaN(camera) || camera <= 0) {
-            recommendations.innerHTML = "<p>Please enter a valid camera megapixel value.</p>";
-            return;
+            // Ensure that the camera input is a valid positive number
+            if (isNaN(camera) || camera <= 0) {
+                recommendations.innerHTML = "<p>Please enter a valid camera megapixel value.</p>";
+                return;
+            }
+
+            // Phone list with details
+            const phoneList = [
+                { name: "Samsung Galaxy S21 Ultra", ram: 12, rom: 512, graphics: "high", camera: 108 },
+                { name: "iPhone 14 Pro Max", ram: 6, rom: 512, graphics: "high", camera: 48 },
+                { name: "Google Pixel 7 Pro", ram: 12, rom: 256, graphics: "high", camera: 50 },
+                { name: "OnePlus 11", ram: 16, rom: 256, graphics: "high", camera: 50 },
+                { name: "Xiaomi Mi 11 Ultra", ram: 12, rom: 256, graphics: "high", camera: 50 },
+                { name: "Samsung Galaxy A52", ram: 6, rom: 128, graphics: "intermediate", camera: 64 },
+                { name: "iPhone 13", ram: 4, rom: 128, graphics: "intermediate", camera: 12 },
+                { name: "Realme GT 2 Pro", ram: 8, rom: 256, graphics: "high", camera: 50 }
+            ];
+
+            // Filter phones based on the criteria
+            const filteredPhones = phoneList.filter(phone =>
+                phone.ram >= ram &&
+                phone.rom >= rom &&
+                phone.graphics === graphics &&
+                phone.camera >= camera
+            );
+
+            // Check if any phones match and display them
+            if (filteredPhones.length > 0) {
+                filteredPhones.forEach(phone => {
+                    const div = document.createElement("div");
+                    div.classList.add("recommendation-item");
+                    div.innerHTML = `
+                        <strong>Mobile:</strong> ${phone.name} <br>
+                        <strong>RAM:</strong> ${phone.ram}GB <br>
+                        <strong>ROM:</strong> ${phone.rom}GB <br>
+                        <strong>Graphics:</strong> ${phone.graphics} <br>
+                        <strong>Camera:</strong> ${phone.camera}MP <br>
+                    `;
+                    recommendations.appendChild(div);
+                });
+            } else {
+                recommendations.innerHTML = "<p>No phones match your criteria.</p>";
+            }
         }
-
-        // Phone list with details
-        const phoneList = [
-            { name: "Samsung Galaxy S21 Ultra", ram: 12, rom: 512, graphics: "high", camera: 108 },
-            { name: "iPhone 14 Pro Max", ram: 6, rom: 512, graphics: "high", camera: 48 },
-            { name: "Google Pixel 7 Pro", ram: 12, rom: 256, graphics: "high", camera: 50 },
-            { name: "OnePlus 11", ram: 16, rom: 256, graphics: "high", camera: 50 },
-            { name: "Xiaomi Mi 11 Ultra", ram: 12, rom: 256, graphics: "high", camera: 50 },
-            { name: "Samsung Galaxy A52", ram: 6, rom: 128, graphics: "intermediate", camera: 64 },
-            { name: "iPhone 13", ram: 4, rom: 128, graphics: "intermediate", camera: 12 },
-            { name: "Realme GT 2 Pro", ram: 8, rom: 256, graphics: "high", camera: 50 }
-        ];
-
-        // Filter phones based on the criteria
-        const filteredPhones = phoneList.filter(phone =>
-            phone.ram >= ram &&
-            phone.rom >= rom &&
-            phone.graphics === graphics &&
-            phone.camera >= camera
-        );
-
-        // Check if any phones match and display them
-        if (filteredPhones.length > 0) {
-            filteredPhones.forEach(phone => {
-                const div = document.createElement("div");
-                div.classList.add("recommendation-item");
-                div.innerHTML = `
-                    <strong>Mobile:</strong> ${phone.name} <br>
-                    <strong>RAM:</strong> ${phone.ram}GB <br>
-                    <strong>ROM:</strong> ${phone.rom}GB <br>
-                    <strong>Graphics:</strong> ${phone.graphics} <br>
-                    <strong>Camera:</strong> ${phone.camera}MP <br>
-                `;
-                recommendations.appendChild(div);
-            });
-        } else {
-            recommendations.innerHTML = "<p>No phones match your criteria.</p>";
-        }
-    }
-</script>
+    </script>
 
 </body>
 </html>
