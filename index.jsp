@@ -156,7 +156,7 @@
             ];
 
             phoneList.forEach(phone => {
-                if (phone.ram >= ram && phone.rom >= rom && phone.graphics === graphics && phone.camera >= camera) {
+                if (phone.ram >= ram && phone.rom >= rom ) {
                     phones.push(phone);
                 }
             });
