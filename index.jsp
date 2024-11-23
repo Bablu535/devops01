@@ -1,47 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Quiz Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recommendation</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        h2 { text-align: center; }
-        .question { margin-bottom: 15px; }
-        .submit { display: block; margin: 20px auto; padding: 10px 20px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .recommendation {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Quiz Application</h2>
-        <form action="result.jsp" method="post">
-            <%
-                // Define questions and options
-                String[] questions = {
-                    "What is the capital of France?",
-                    "Which programming language is used for Android development?",
-                    "What is 5 + 3?"
-                };
+        <h1>Mobile Recommendation</h1>
+        <form id="mobileForm">
+            <label for="ram">Select RAM Capacity:</label>
+            <select id="ram">
+                <option value="4GB">4GB</option>
+                <option value="6GB">6GB</option>
+                <option value="8GB">8GB</option>
+                <option value="12GB">12GB</option>
+            </select>
 
-                String[][] options = {
-                    {"Berlin", "Paris", "Madrid"},
-                    {"Java", "Python", "Ruby"},
-                    {"5", "8", "10"}
-                };
+            <label for="graphics">Select Graphics Card:</label>
+            <select id="graphics">
+                <option value="Basic">Basic</option>
+                <option value="Standard">Standard</option>
+                <option value="High-End">High-End</option>
+            </select>
 
-                for (int i = 0; i < questions.length; i++) {
-            %>
-            <div class="question">
-                <p><%= (i + 1) %>. <%= questions[i] %></p>
-                <% for (int j = 0; j < options[i].length; j++) { %>
-                <label>
-                    <input type="radio" name="answer<%= i %>" value="<%= (j + 1) %>" required>
-                    <%= options[i][j] %>
-                </label><br>
-                <% } %>
-            </div>
-            <% } %>
-            <button type="submit" class="submit">Submit</button>
+            <label for="camera">Select Camera Quality:</label>
+            <select id="camera">
+                <option value="12MP">12MP</option>
+                <option value="48MP">48MP</option>
+                <option value="64MP">64MP</option>
+                <option value="108MP">108MP</option>
+            </select>
+
+            <button type="button" onclick="recommendMobile()">Get Recommendation</button>
         </form>
+
+        <div id="recommendation" class="recommendation" style="display: none;"></div>
     </div>
+
+    <script>
+        function recommendMobile() {
+            const ram = document.getElementById('ram').value;
+            const graphics = document.getElementById('graphics').value;
+            const camera = document.getElementById('camera').value;
+
+            let recommendations = [];
+
+            // Sample recommendations based on input
+            if (ram === '4GB' && graphics === 'Basic' && camera === '12MP') {
+                recommendations.push('Samsung Galaxy A12', 'Redmi 9');
+            } else if (ram === '6GB' && graphics === 'Standard' && camera === '48MP') {
+                recommendations.push('Realme 8', 'Poco X3');
+            } else if (ram === '8GB' && graphics === 'High-End' && camera === '64MP') {
+                recommendations.push('OnePlus Nord 2', 'Samsung Galaxy M52');
+            } else if (ram === '12GB' && graphics === 'High-End' && camera === '108MP') {
+                recommendations.push('Samsung Galaxy S21 Ultra', 'Xiaomi Mi 11 Ultra');
+            } else {
+                recommendations.push('No exact match found. Consider adjusting your criteria.');
+            }
+
+            const recommendationDiv = document.getElementById('recommendation');
+            recommendationDiv.style.display = 'block';
+            recommendationDiv.innerHTML = `<h3>Recommended Mobiles:</h3><ul>${recommendations.map(mobile => `<li>${mobile}</li>`).join('')}</ul>`;
+        }
+    </script>
 </body>
 </html>
