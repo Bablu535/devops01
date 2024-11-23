@@ -129,9 +129,6 @@
             const recommendations = document.getElementById("recommendations");
             recommendations.innerHTML = "";
 
-            let phones = [];
-
-            // Dummy data for phone recommendations
             const phoneList = [
                 { name: "Samsung Galaxy S21 Ultra", ram: 12, rom: 512, graphics: "high", camera: 108 },
                 { name: "iPhone 14 Pro Max", ram: 6, rom: 512, graphics: "high", camera: 48 },
@@ -143,19 +140,15 @@
                 { name: "Realme GT 2 Pro", ram: 8, rom: 256, graphics: "high", camera: 50 }
             ];
 
-            phoneList.forEach(phone => {
-                if (
-                    phone.ram >= ram &&
-                    phone.rom >= rom &&
-                    phone.graphics === graphics &&
-                    phone.camera >= camera
-                ) {
-                    phones.push(phone);
-                }
-            });
+            const filteredPhones = phoneList.filter(phone =>
+                phone.ram >= ram &&
+                phone.rom >= rom &&
+                phone.graphics === graphics &&
+                phone.camera >= camera
+            );
 
-            if (phones.length > 0) {
-                phones.forEach(phone => {
+            if (filteredPhones.length > 0) {
+                filteredPhones.forEach(phone => {
                     const div = document.createElement("div");
                     div.classList.add("recommendation-item");
                     div.textContent = `Model: ${phone.name} - RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}`;
