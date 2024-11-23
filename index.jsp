@@ -124,7 +124,7 @@
             const ram = parseInt(document.getElementById("ram").value, 10);
             const rom = parseInt(document.getElementById("rom").value, 10);
             const graphics = document.getElementById("graphics").value.toLowerCase();
-            const camera = parseInt(document.getElementById("camera").value, 10) || 0; // Default to 0 if empty
+            const camera = parseInt(document.getElementById("camera").value, 10) || 0;
 
             const recommendations = document.getElementById("recommendations");
             recommendations.innerHTML = ""; // Clear previous results
@@ -149,16 +149,17 @@
                 phone.camera >= camera
             );
 
-            // Display filtered phones or fallback message
+            // Generate HTML output for recommendations
             if (filteredPhones.length > 0) {
+                let output = "<h3>Recommended Phones:</h3>";
+                output += "<ul>";
                 filteredPhones.forEach(phone => {
-                    const div = document.createElement("div");
-                    div.classList.add("recommendation-item");
-                    div.textContent = `Model: ${phone.name}, RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}`;
-                    recommendations.appendChild(div);
+                    output += `<li><strong>${phone.name}</strong><br>RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}</li>`;
                 });
+                output += "</ul>";
+                recommendations.innerHTML = output;
             } else {
-                recommendations.textContent = "No phones match your criteria. Try adjusting your filters.";
+                recommendations.innerHTML = "<h3>No phones match your criteria. Try adjusting your filters.</h3>";
             }
         }
     </script>
