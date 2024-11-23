@@ -114,7 +114,7 @@
             <select id="graphics">
                 <option value="basic">Basic</option>
                 <option value="intermediate">Intermediate</option>
-                <option value="high">High</option>
+                <option value="high">High-end</option>
             </select>
 
             <label for="camera">Camera Megapixels</label>
@@ -136,6 +136,7 @@
             const recommendations = document.getElementById("recommendations");
             recommendations.innerHTML = "";  // Clear previous recommendations
 
+            // Phone list with details
             const phoneList = [
                 { name: "Samsung Galaxy S21 Ultra", ram: 12, rom: 512, graphics: "high", camera: 108 },
                 { name: "iPhone 14 Pro Max", ram: 6, rom: 512, graphics: "high", camera: 48 },
@@ -147,6 +148,7 @@
                 { name: "Realme GT 2 Pro", ram: 8, rom: 256, graphics: "high", camera: 50 }
             ];
 
+            // Filter phones based on criteria
             const filteredPhones = phoneList.filter(phone =>
                 phone.ram >= ram &&
                 phone.rom >= rom &&
@@ -154,6 +156,7 @@
                 phone.camera >= camera
             );
 
+            // Check if any phones match and display them
             if (filteredPhones.length > 0) {
                 filteredPhones.forEach(phone => {
                     const div = document.createElement("div");
