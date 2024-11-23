@@ -77,6 +77,13 @@
         .recommendation-item:last-child {
             border-bottom: none;
         }
+        .details {
+            margin-left: 20px;
+        }
+        .details strong {
+            display: inline-block;
+            width: 100px;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +114,7 @@
             <select id="graphics">
                 <option value="basic">Basic</option>
                 <option value="intermediate">Intermediate</option>
-                <option value="high">High-end</option>
+                <option value="high">High</option>
             </select>
 
             <label for="camera">Camera Megapixels</label>
@@ -152,11 +159,13 @@
                     const div = document.createElement("div");
                     div.classList.add("recommendation-item");
                     div.innerHTML = `
-                        <strong>Model:</strong> ${phone.name} <br>
-                        <strong>RAM:</strong> ${phone.ram}GB <br>
-                        <strong>ROM:</strong> ${phone.rom}GB <br>
-                        <strong>Camera:</strong> ${phone.camera}MP <br>
-                        <strong>Graphics:</strong> ${phone.graphics} <br>
+                        <strong>Mobile:</strong> ${phone.name} <br>
+                        <div class="details">
+                            <strong>RAM:</strong> ${phone.ram}GB <br>
+                            <strong>ROM:</strong> ${phone.rom}GB <br>
+                            <strong>Camera:</strong> ${phone.camera}MP <br>
+                            <strong>Graphics:</strong> ${phone.graphics} <br>
+                        </div>
                     `;
                     recommendations.appendChild(div);
                 });
