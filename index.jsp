@@ -93,7 +93,7 @@
         <div class="disclaimer">
             <strong>Get your vibe on with the best smartphone!</strong> 
         </div>
-        <form id="phoneForm">
+        <form id="phoneForm" onsubmit="event.preventDefault(); getRecommendations();">
             <label for="ram">RAM Capacity (GB)</label>
             <select id="ram">
                 <option value="4">4GB</option>
@@ -118,9 +118,9 @@
             </select>
 
             <label for="camera">Camera Megapixels</label>
-            <input type="number" id="camera" value="camera" placeholder="Enter camera MP" min="1">
+            <input type="number" id="camera" placeholder="Enter camera MP" min="1">
 
-            <button type="button" onclick="getRecommendations()">Get Recommendations</button>
+            <button type="submit">Get Recommendations</button>
         </form>
 
         <div id="recommendations" class="recommendations"></div>
@@ -128,6 +128,7 @@
 
     <script>
         function getRecommendations() {
+            // Get the form values
             const ram = parseInt(document.getElementById("ram").value, 10);
             const rom = parseInt(document.getElementById("rom").value, 10);
             const graphics = document.getElementById("graphics").value;
