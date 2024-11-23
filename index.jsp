@@ -127,7 +127,7 @@
             const camera = parseInt(document.getElementById("camera").value, 10);
 
             const recommendations = document.getElementById("recommendations");
-            recommendations.innerHTML = "";
+            recommendations.innerHTML = "";  // Clear previous recommendations
 
             const phoneList = [
                 { name: "Samsung Galaxy S21 Ultra", ram: 12, rom: 512, graphics: "high", camera: 108 },
@@ -151,11 +151,17 @@
                 filteredPhones.forEach(phone => {
                     const div = document.createElement("div");
                     div.classList.add("recommendation-item");
-                    div.textContent = `Model: ${phone.name} - RAM: ${phone.ram}GB, ROM: ${phone.rom}GB, Camera: ${phone.camera}MP, Graphics: ${phone.graphics}`;
+                    div.innerHTML = `
+                        <strong>Model:</strong> ${phone.name} <br>
+                        <strong>RAM:</strong> ${phone.ram}GB <br>
+                        <strong>ROM:</strong> ${phone.rom}GB <br>
+                        <strong>Camera:</strong> ${phone.camera}MP <br>
+                        <strong>Graphics:</strong> ${phone.graphics} <br>
+                    `;
                     recommendations.appendChild(div);
                 });
             } else {
-                recommendations.textContent = "No phones match your criteria.";
+                recommendations.innerHTML = "<p>No phones match your criteria.</p>";
             }
         }
     </script>
