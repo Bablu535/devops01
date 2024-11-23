@@ -163,12 +163,10 @@
                     div.classList.add("recommendation-item");
                     div.innerHTML = `
                         <strong>Mobile:</strong> ${phone.name} <br>
-                        <div class="details">
-                            <strong>RAM:</strong> ${phone.ram}GB <br>
-                            <strong>ROM:</strong> ${phone.rom}GB <br>
-                            <strong>Camera:</strong> ${phone.camera}MP <br>
-                            <strong>Graphics:</strong> ${phone.graphics} <br>
-                        </div>
+                        <strong>RAM:</strong> ${phone.ram}GB <br>
+                        <strong>ROM:</strong> ${phone.rom}GB <br>
+                        <strong>Camera:</strong> ${phone.camera}MP <br>
+                        <strong>Graphics:</strong> ${phone.graphics} <br>
                     `;
                     recommendations.appendChild(div);
                 });
